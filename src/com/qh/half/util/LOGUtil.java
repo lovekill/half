@@ -9,27 +9,27 @@ import com.qh.half.BuildConfig;
 public class LOGUtil {
     public static void v(String tag,Object o){
         if(BuildConfig.DEBUG){
-            Log.v(tag,o+"")  ;
+            Log.v("half:"+tag,o+"")  ;
         }
     }
     public static void d(String tag,Object o){
         if(BuildConfig.DEBUG){
-            Log.d(tag,o+"")  ;
+            Log.d("half:"+tag,o+"")  ;
         }
     }
     public static void i(String tag,Object o){
         if(BuildConfig.DEBUG){
-            Log.i(tag,o+"")  ;
+            Log.i("half:"+tag,o+"")  ;
         }
     }
     public static void w(String tag,Object o){
         if(BuildConfig.DEBUG){
-            Log.w(tag,o+"")  ;
+            Log.w("half:"+tag,o+"")  ;
         }
     }
     public static void e(String tag,Object o){
         if(BuildConfig.DEBUG){
-            Log.e(tag,o+"")  ;
+            Log.e("half:"+tag,o+"")  ;
         }
     }
 }

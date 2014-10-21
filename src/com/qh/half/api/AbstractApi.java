@@ -12,11 +12,10 @@ import java.lang.reflect.Field;
  */
 public abstract class AbstractApi {
     @NoteParam
-//    public static final String BASE_URL = "http://192.168.0.38:8086/";
-    public static final String BASE_URL = "http://app.y6.cn/";
+    public static final String BASE_URL = "http://175.102.7.142:81/";
     public int pageSize = 20 ;
     private int pageNo= 1 ;
-
+    public static String pass_key = "2c606d875cd067d0ac4634932815580d" ;
 
     public int getPageSize() {
         return pageSize;
