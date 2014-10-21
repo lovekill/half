@@ -9,6 +9,7 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.qh.half.ui.BaseActivity;
 import com.qh.half.util.LOGUtil;
 import de.greenrobot.dao.query.QueryBuilder;
 import de.greenrobot.dao.query.WhereCondition;
@@ -32,7 +33,6 @@ public abstract class BaseFragment extends Fragment {
     public BaseFragment() {
     }
 
-    protected View headView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,6 @@ public abstract class BaseFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        headView = inflater.inflate(R.layout.default_head_layout, null);
         if (view == null) {
             view = inflater.inflate(getViewId(), null, false);
             ButterKnife.inject(this, view);
@@ -60,42 +59,15 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        MobclickAgent.onPageStart(getModelName());
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        MobclickAgent.onPageEnd(getModelName());
     }
 
-    public void setTitleView(int id) {
-        if (id > 0) {
-            View view = LayoutInflater.from(getActivity()).inflate(id, null);
-            setTitleView(view);
-        }
-    }
 
-    public void setTitleView(View view) {
-        if (view != null) {
-            ((BaseActivity) getActivity()).setmTitleView(view);
-        }
-    }
 
-    public void setDefaultTitle(String title) {
-        View v = LayoutInflater.from(getActivity()).inflate(R.layout.default_title_layout, null);
-        TextView titleText = (TextView) v.findViewById(R.id.title);
-        titleText.setText(title);
-        v.findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (getActivity() != null) {
-                    goBack();
-                }
-            }
-        });
-        setTitleView(v);
-    }
 
     public void goBack() {
         ((BaseActivity) getActivity()).onBackPressed();
@@ -113,76 +85,6 @@ public abstract class BaseFragment extends Fragment {
         });
     }
 
-    @Override
-    public void onLoadStart() {
-        if (!(getActivity() instanceof HomeActivity)) {
-            ((BaseActivity) getActivity()).loadStart();
-        }
-    }
-
-    @Override
-    public void onSuccess(String content) {
-        if (getActivity() == null) return;
-        if (!(getActivity() instanceof HomeActivity)) {
-            ((BaseActivity) getActivity()).loadSuccess();
-        }
-    }
-
-    @Override
-    public void onFailure(Throwable error) {
-        if (getActivity() instanceof BaseActivity) {
-            ((BaseActivity) getActivity()).loadFail();
-        }
-    }
-
-    protected void cacheJson(long modelId, String json, AbstractApi abstractApi) {
-        if (getActivity() == null) return;
-        TARequest request = new TARequest();
-        request.setResouce(modelId);
-        request.setData(json);
-        request.setTag(abstractApi);
-        ((TAActivity) getActivity()).doCommand(R.string.saveCommond, request,
-                this, false, false);
-    }
-
-    protected void loadCach(long model) {
-        WhereCondition recource = JsonEntryDao.Properties.Resouce.eq(model);
-        QueryBuilder<JsonEntry> queryBuilder = DaoManager.getDaoSession()
-                .getJsonEntryDao().queryBuilder().where(recource);
-        TARequest request = new TARequest();
-        request.setData(queryBuilder);
-        ((TAActivity) getActivity()).doCommand(R.string.getCommond, request,
-                this, false, false);
-
-    }
-
-    @Override
-    public void onSuccess(TAResponse response) {
-
-    }
-
-    @Override
-    public void onRuning(TAResponse response) {
-
-    }
-
-    @Override
-    public void onFailure(TAResponse response) {
-
-    }
-
-    @Override
-    public void onFinish() {
-
-    }
-
-    public void back() {
-        if (getFragmentManager().getFragments().size() > 1) {
-            getFragmentManager().popBackStack();
-        } else {
-            getActivity().finish();
-        }
-    }
 
     /**
      * @param clazz

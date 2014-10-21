@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@drawable/login_bg_2x"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:gravity="center_horizontal"
+                  android:layout_marginTop="200dp">
+
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/btn_rr"
+                   android:id="@+id/school"/>
+
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/btn_wb_2x"
+                   android:layout_marginLeft="@dimen/login_left"
+                   android:id="@+id/weibo"/>
+
+        <ImageView android:layout_width="wrap_content"
+                   android:src="@drawable/btn_db_2x"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="@dimen/login_left"
+                   android:id="@+id/douban"/>
+
+        <ImageView android:layout_width="wrap_content"
+                   android:src="@drawable/btn_qq"
+                   android:layout_marginLeft="@dimen/login_left"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/qq"/>
+    </LinearLayout>
+</LinearLayout>
