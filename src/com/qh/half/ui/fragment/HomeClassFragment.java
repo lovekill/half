@@ -19,7 +19,6 @@ import com.qh.half.util.LOGUtil;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -51,6 +50,8 @@ public class HomeClassFragment extends BaseFragment {
     LinearLayout mOneThree;
     @InjectView(R.id.twoThree)
     LinearLayout mTwoThree;
+    @InjectView(R.id.testImage)
+    ImageView mTestImage;
     private List<HomeClass> mTopScrollList;
     private List<HomeClass> mOneTwoCardList;
     private List<HomeClass> mThreeCard1;
@@ -85,6 +86,7 @@ public class HomeClassFragment extends BaseFragment {
                     initEventView(mOneTwoCardList);
                     initOneCard(mThreeCard1, mOneThree);
                     initOneCard(mThreeCard2, mTwoThree);
+//                    ImageLoadUtil.displayImage(mThreeCard1.get(0).class_photo,mTestImage);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -103,19 +105,19 @@ public class HomeClassFragment extends BaseFragment {
 
     private void initOneCard(List<HomeClass> list, LinearLayout parentLayout) {
         for (HomeClass homeClass : list) {
-            View view = LayoutInflater.from(getActivity()).inflate(R.layout.home_hot_item, null);
+            View view = LayoutInflater.from(getActivity()).inflate(R.layout.home_hot_item, null,false);
             ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
             TextView textView = (TextView) view.findViewById(R.id.textView);
             ImageLoadUtil.displayImage(homeClass.class_photo, imageView);
-            LOGUtil.e(TAG,homeClass.class_photo);
+            LOGUtil.e(TAG, homeClass.class_photo);
             textView.setText(homeClass.class_name);
             LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             p.width = 1;
 //            view.setLayoutParams(p);
-            TextView t = new TextView(getActivity()) ;
+            TextView t = new TextView(getActivity());
             t.setText("---");
             parentLayout.addView(view);
-
         }
     }
+
 }
