@@ -5,7 +5,7 @@
     <uses-sdk android:minSdkVersion="16"/>
     <application android:name=".HalfApplication"
             android:icon="@drawable/ic_launcher" android:label="@string/app_name"
-            android:theme="@android:style/Theme.Black.NoTitleBar">
+            android:theme="@style/ViewPageTab">
         <activity
                 android:label="@string/app_name" android:name=".ui.HomeActivity">
             <intent-filter>

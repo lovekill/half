@@ -9,9 +9,10 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import com.qh.half.ui.BaseActivity;
 import com.qh.half.ui.view.CameraPreview;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity{
     @InjectView(R.id.camaraPreViewLayout)
     FrameLayout mCamaraPreViewLayout;
     @InjectView(R.id.button)
@@ -23,19 +24,20 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        ButterKnife.inject(this);
-        if(checkCameraHardware()) {
-            mCamaraPreview = new CameraPreview(this, getCameraInstance());
-            mCamaraPreViewLayout.addView(mCamaraPreview);
-        }
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getCameraInstance().stopPreview();
-                getCameraInstance().release();
-            }
-        });
+//        setContentView(R.layout.main);
+//        ButterKnife.inject(this);
+//        if(checkCameraHardware()) {
+//            mCamaraPreview = new CameraPreview(this, getCameraInstance());
+//            mCamaraPreViewLayout.addView(mCamaraPreview);
+//        }
+//        mButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getCameraInstance().stopPreview();
+//                getCameraInstance().release();
+//            }
+//        });
+
     }
 
     /**

@@ -16,6 +16,7 @@ public class ImageLoadUtil {
     private static String TAG = "ImageLoadUtil";
 
     public static void displayImage(String url, ImageView imageView) {
+        LOGUtil.i(TAG,url);
         ImageLoader.getInstance().displayImage(url, imageView, getOptions());
     }
 
