@@ -84,9 +84,9 @@ public class HomeClassFragment extends BaseFragment {
                     mThreeCard1 = jsonToList(HomeClass.class, jsonArray.getJSONObject(4).toString(), "class_list");
                     mThreeCard2 = jsonToList(HomeClass.class, jsonArray.getJSONObject(5).toString(), "class_list");
                     initEventView(mOneTwoCardList);
-//                    initOneCard(mThreeCard1, mOneThree);
-//                    initOneCard(mThreeCard2, mTwoThree);
-                    ImageLoadUtil.displayImage(mThreeCard1.get(0).class_photo,mTestImage);
+                    initOneCard(mThreeCard1, mOneThree);
+                    initOneCard(mThreeCard2, mTwoThree);
+//                    ImageLoadUtil.displayImage(mThreeCard1.get(0).class_photo,mTestImage);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
