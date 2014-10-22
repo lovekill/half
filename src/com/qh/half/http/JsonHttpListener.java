@@ -28,7 +28,7 @@ public class JsonHttpListener extends JsonHttpResponseHandler implements DialogI
         this.mContext = context;
         if (mContext != null) {
 //            mProgressDialog = new ProgressDialog(mContext, "正在加载更多数据");
-            mProgressDialog.setOnCancelListener(this);
+//            mProgressDialog.setOnCancelListener(this);
         }
     }
 
@@ -36,7 +36,7 @@ public class JsonHttpListener extends JsonHttpResponseHandler implements DialogI
         this.mContext = context;
         if (mContext != null) {
 //            mProgressDialog = new LoadDataDialog(mContext, message + "......");
-            mProgressDialog.setOnCancelListener(this);
+//            mProgressDialog.setOnCancelListener(this);
         }
     }
 
@@ -63,14 +63,10 @@ public class JsonHttpListener extends JsonHttpResponseHandler implements DialogI
             if (mFragment.getActivity() == null) return;
         }
         LOGUtil.e(TAG, response.toString());
-        if (dispatchJson(response.toString())) {
-            if (listener != null) {
-                listener.onSuccess(response.toString());
-            }
-            onRequestSuccess(response.toString());
-        } else {
-            onResultFail(response.toString());
+        if (listener != null) {
+            listener.onSuccess(response.toString());
         }
+        onRequestSuccess(response.toString());
     }
 
     @Override
@@ -130,7 +126,7 @@ public class JsonHttpListener extends JsonHttpResponseHandler implements DialogI
         }
         try {
             JSONObject jsonObject = new JSONObject(json);
-            if ("1000".equals(jsonObject.optString("code"))) {
+            if ("1".equals(jsonObject.optString("result"))) {
                 return true;
             } else {
                 return false;

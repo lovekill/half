@@ -3,7 +3,7 @@
           package="com.qh.half">
 
     <uses-sdk android:minSdkVersion="16"/>
-    <application
+    <application android:name=".HalfApplication"
             android:icon="@drawable/ic_launcher" android:label="@string/app_name"
             android:theme="@android:style/Theme.Black.NoTitleBar">
         <activity
@@ -14,7 +14,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"/>
-
+        <activity
+                android:name=".ui.HomeActivity"
+                android:theme="@style/ViewPageTab"
+                ></activity>
         <meta-data
                 android:name="UMENG_APPKEY" android:value="53bb556d56240bcff207ec6c"/>
 

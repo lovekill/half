@@ -154,6 +154,5 @@ public abstract class BaseFragment extends Fragment {
 
     protected abstract int getViewId();
 
-    protected abstract String getModelName();
 
 }

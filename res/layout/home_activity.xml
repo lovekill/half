@@ -4,7 +4,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent" >
 
     <LinearLayout
             android:id="@+id/titleLayout"
@@ -28,102 +28,43 @@
                     android:id="@+id/tablayout"
                     android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
+                    android:background="@color/white"
                     android:weightSum="5"
                     android:layout_height="wrap_content">
 
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_gravity="center"
-                        android:gravity="center_horizontal"
-                        android:id="@+id/classfyLayout"
-                        android:layout_height="wrap_content">
-
-                    <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
-                    <TextView
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                </LinearLayout>
 
                 <LinearLayout
-                        android:id="@+id/rankLayout"
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:layout_height="wrap_content">
+                        android:background="@drawable/home_home_selected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
-                    <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
-                    <TextView
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                </LinearLayout>
 
                 <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
                         android:layout_weight="1"
-                        android:visibility="invisible"
-                        android:gravity="center"
-                        android:layout_height="wrap_content">
+                        android:background="@drawable/home_squar_selected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
-                    <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
-                    <TextView
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                </LinearLayout>
 
                 <LinearLayout
-                        android:id="@+id/countryLayout"
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:layout_height="wrap_content">
-
-                    <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
-                    <TextView
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                </LinearLayout>
+                        android:background="@drawable/home_home_selected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
                 <LinearLayout
-                        android:id="@+id/personLayout"
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:layout_height="wrap_content">
+                        android:background="@drawable/home_home_selected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
-                    <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
 
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"/>
-                </LinearLayout>
+                <LinearLayout
+                        android:background="@drawable/home_home_selected"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
             </LinearLayout>
 
             <FrameLayout
@@ -133,23 +74,27 @@
                     android:layout_height="match_parent">
 
                 <fragment
-                        android:id="@+id/classfy"
+                        android:id="@+id/homefragment"
+                        class="com.qh.half.ui.fragment.HomeFragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         ></fragment>
 
                 <fragment
-                        android:id="@+id/rank"
+                        android:id="@+id/squartfragment"
+                        class="com.qh.half.ui.fragment.SquartFragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"></fragment>
 
                 <fragment
-                        android:id="@+id/home"
+                        android:id="@+id/messagefragment"
+                        class="com.qh.half.ui.fragment.MessageFragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"></fragment>
 
                 <fragment
                         android:id="@+id/pCenter"
+                        class="com.qh.half.ui.fragment.UserCenterFragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"></fragment>
             </FrameLayout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="vertical"
+                  android:layout_height="match_parent">
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="10dp">
+
+            <android.support.v4.view.ViewPager
+                    android:id="@+id/topViewPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+
+            <LinearLayout android:id="@+id/indicatorLayout"
+                          android:orientation="horizontal"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"></LinearLayout>
+        </RelativeLayout>
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="30dp"
+                  android:gravity="center_vertical" android:id="@+id/eventTitle"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="240dp" android:weightSum="2">
+
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent">
+
+                <ImageView android:layout_width="match_parent"
+                           android:id="@+id/eventImage1"
+                           android:layout_height="match_parent"
+                           android:scaleType="centerCrop"/>
+
+                <TextView android:layout_width="wrap_content"
+                          android:id="@+id/eventText1"
+                          android:layout_alignParentBottom="true"
+                          android:layout_marginBottom="15dp"
+                          android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:layout_weight="1"
+                          android:weightSum="2"
+                          android:orientation="vertical">
+
+                <RelativeLayout android:layout_width="match_parent"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent">
+
+                    <ImageView android:layout_width="match_parent"
+                               android:id="@+id/eventImage2"
+                               android:layout_height="match_parent"
+                               android:scaleType="centerCrop"/>
+
+                    <TextView android:layout_width="wrap_content"
+                              android:id="@+id/eventText2"
+                              android:layout_alignParentBottom="true"
+                              android:layout_marginBottom="15dp"
+                              android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+                <RelativeLayout android:layout_width="match_parent"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent">
+
+                    <ImageView android:layout_width="match_parent"
+                               android:id="@+id/eventImage3"
+                               android:layout_height="match_parent"
+                               android:scaleType="centerCrop"/>
+
+                    <TextView android:layout_width="wrap_content"
+                              android:id="@+id/eventText3"
+                              android:layout_alignParentBottom="true"
+                              android:layout_marginBottom="15dp"
+                              android:layout_height="wrap_content"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="30dp"
+                  android:id="@+id/hotTitle"
+                  android:gravity="center_vertical"/>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:orientation="vertical">
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:id="@+id/oneThree"
+                          android:layout_height="100dp"
+                          android:orientation="horizontal"
+                          android:weightSum="3">
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="100dp"
+                          android:orientation="horizontal"
+                          android:id="@+id/twoThree"
+                          android:weightSum="3"></LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

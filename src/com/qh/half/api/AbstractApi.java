@@ -58,8 +58,9 @@ public abstract class AbstractApi {
                     }
                 }
             }
-            params.put("pageSize",pageSize+"");
-            params.put("pageNo",pageNo+"");
+            params.put("pass_key",pass_key);
+//            params.put("pageSize",pageSize+"");
+//            params.put("pageNo",pageNo+"");
         } catch (IllegalArgumentException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
