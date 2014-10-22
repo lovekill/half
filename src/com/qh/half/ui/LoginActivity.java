@@ -23,7 +23,6 @@ import com.umeng.socialize.exception.SocializeException;
 import com.umeng.socialize.sso.UMQQSsoHandler;
 
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
 /**

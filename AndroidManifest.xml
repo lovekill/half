@@ -7,7 +7,7 @@
             android:icon="@drawable/ic_launcher" android:label="@string/app_name"
             android:theme="@android:style/Theme.Black.NoTitleBar">
         <activity
-                android:label="@string/app_name" android:name=".ui.LoginActivity">
+                android:label="@string/app_name" android:name=".ui.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -15,7 +15,7 @@
         </activity>
         <activity android:name=".MainActivity"/>
         <activity
-                android:name=".ui.HomeActivity"
+                android:name=".ui.LoginActivity"
                 android:theme="@style/ViewPageTab"
                 ></activity>
         <meta-data
