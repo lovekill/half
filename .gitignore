@@ -1,6 +1,7 @@
 .idea/
 .idea/
-gen
+gen/
 project.properties
 out
 half.iml
+project.properties
