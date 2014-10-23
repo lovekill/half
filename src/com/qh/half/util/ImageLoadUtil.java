@@ -29,8 +29,7 @@ public class ImageLoadUtil {
 
     public static DisplayImageOptions getOptions() {
         return getBaseBuild()
-                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
-                .displayer(new RoundedBitmapDisplayer(0)).build();
+                .build();
     }
 
     public static DisplayImageOptions getBigOptions() {

@@ -1,6 +1,8 @@
 package com.qh.half.ui.fragment;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,8 +52,6 @@ public class HomeClassFragment extends BaseFragment {
     LinearLayout mOneThree;
     @InjectView(R.id.twoThree)
     LinearLayout mTwoThree;
-    @InjectView(R.id.testImage)
-    ImageView mTestImage;
     private List<HomeClass> mTopScrollList;
     private List<HomeClass> mOneTwoCardList;
     private List<HomeClass> mThreeCard1;
@@ -77,16 +77,21 @@ public class HomeClassFragment extends BaseFragment {
                 try {
                     JSONObject jsonObject = new JSONObject(jsonString);
                     JSONArray jsonArray = jsonObject.optJSONArray("class");
-                    mTopScrollList = jsonToList(HomeClass.class, jsonArray.getJSONObject(0).toString(), "class_list");
+                    String str = jsonArray.getJSONObject(0).toString();
+                    mTopScrollList = jsonToList(HomeClass.class, str, "class_list");
                     mEventTitle.setText(jsonArray.getJSONObject(1).optString("title"));
                     mOneTwoCardList = jsonToList(HomeClass.class, jsonArray.getJSONObject(2).toString(), "class_list");
                     mHotTitle.setText(jsonArray.getJSONObject(3).optString("title"));
                     mThreeCard1 = jsonToList(HomeClass.class, jsonArray.getJSONObject(4).toString(), "class_list");
                     mThreeCard2 = jsonToList(HomeClass.class, jsonArray.getJSONObject(5).toString(), "class_list");
                     initEventView(mOneTwoCardList);
-//                    initOneCard(mThreeCard1, mOneThree);
-//                    initOneCard(mThreeCard2, mTwoThree);
-                    ImageLoadUtil.displayImage(mThreeCard1.get(0).class_photo,mTestImage);
+                    initOneCard(mThreeCard1, mOneThree);
+                    initOneCard(mThreeCard2, mTwoThree);
+//                    ImageLoadUtil.displayImage(mThreeCard1.get(0).class_photo,mTestImage);
+                    if(mTopScrollList.size()>0) {
+                        ImagePageAdapter adapter = new ImagePageAdapter();
+                        mTopViewPage.setAdapter(adapter);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -119,5 +124,28 @@ public class HomeClassFragment extends BaseFragment {
             parentLayout.addView(view);
         }
     }
+    class ImagePageAdapter extends BaseFragmentAdaper{
 
+        public ImagePageAdapter() {
+            super(getChildFragmentManager());
+        }
+
+        @Override
+        public Fragment getFragment(int i) {
+            if(i<mTopScrollList.size()) {
+                SigleImageFragment sigleImageFragment = new SigleImageFragment();
+                Bundle b = new Bundle();
+                b.putString(SigleImageFragment.URL, mTopScrollList.get(i).class_photo);
+                sigleImageFragment.setArguments(b);
+                return sigleImageFragment;
+            }else{
+                return null ;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return mTopScrollList.size();
+        }
+    }
 }
