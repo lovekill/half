@@ -7,10 +7,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import com.google.gson.Gson;
+import com.qh.half.HalfApplication;
 import com.qh.half.R;
 import com.qh.half.api.login.SnsLoginApi;
 import com.qh.half.http.JsonHttpListener;
 import com.qh.half.http.ZhidianHttpClient;
+import com.qh.half.model.User;
 import com.qh.half.util.LOGUtil;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.bean.SnsAccount;
@@ -21,6 +24,8 @@ import com.umeng.socialize.controller.UMSocialService;
 import com.umeng.socialize.controller.listener.SocializeListeners;
 import com.umeng.socialize.exception.SocializeException;
 import com.umeng.socialize.sso.UMQQSsoHandler;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Map;
 import java.util.Set;
@@ -133,8 +138,16 @@ private void snsLogin(Map<String ,Object> info){
         @Override
         public void onRequestSuccess(String jsonString) {
             super.onRequestSuccess(jsonString);
-            Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
-            startActivity(intent);
+            try {
+                JSONObject jsonObject = new JSONObject(jsonString);
+                if("1".equals(jsonObject.optString("result"))){
+                    HalfApplication.loginUser =new Gson().fromJson(jsonString,User.class);
+                    Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+                    startActivity(intent);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override

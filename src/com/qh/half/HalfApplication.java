@@ -6,11 +6,13 @@ import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGener
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.qh.half.model.User;
 
 /**
  * Created by Administrator on 2014/10/22.
  */
 public class HalfApplication extends Application {
+    public static User loginUser ;
     @Override
     public void onCreate() {
         super.onCreate();

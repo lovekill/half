@@ -29,17 +29,18 @@ public class HomeFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         mRankviewPage.setAdapter(new HomePageAdapter());
         mTitles.setViewPager(mRankviewPage);
-        mTitles.setCurrentItem(2);
+//        mTitles.setCurrentItem(2);
     }
 
-   class  HomePageAdapter extends FragmentPagerAdapter{
+   class  HomePageAdapter extends BaseFragmentAdaper{
 
        public HomePageAdapter() {
            super(getChildFragmentManager());
        }
 
+
        @Override
-       public Fragment getItem(int i) {
+       public Fragment getFragment(int i) {
            if(i==1) return new HomeHotFragment();
            if(i==2) return  new HomeClassFragment();
            return new HomeFocusFragment();

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import butterknife.InjectView;
+import com.qh.half.HalfApplication;
 import com.qh.half.R;
 import com.qh.half.api.home.HomeHotApi;
 import com.qh.half.http.JsonHttpListener;
@@ -29,6 +30,8 @@ public class HomeHotFragment extends BaseFragment {
 
     private void getHomeHot(){
         HomeHotApi homeHotApi = new HomeHotApi() ;
+        homeHotApi.userid= HalfApplication.loginUser.userid;
+        homeHotApi.page=1 ;
         ZhidianHttpClient.request(homeHotApi,new JsonHttpListener(getActivity()){
 
         });

@@ -11,6 +11,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.qh.half.ui.BaseActivity;
 import com.qh.half.ui.fragment.HomeClassFragment;
+import com.qh.half.ui.fragment.HomeFragment;
 import com.qh.half.ui.view.CameraPreview;
 
 public class MainActivity extends BaseActivity{
@@ -38,7 +39,7 @@ public class MainActivity extends BaseActivity{
 //                getCameraInstance().release();
 //            }
 //        });
-        addFragment(new HomeClassFragment());
+        addFragment(new HomeFragment());
     }
 
     /**

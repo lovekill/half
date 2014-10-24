@@ -74,6 +74,7 @@ public class HomeClassFragment extends BaseFragment {
             @Override
             public void onRequestSuccess(String jsonString) {
                 super.onRequestSuccess(jsonString);
+                if(getActivity()==null) return;
                 try {
                     JSONObject jsonObject = new JSONObject(jsonString);
                     JSONArray jsonArray = jsonObject.optJSONArray("class");
@@ -116,11 +117,9 @@ public class HomeClassFragment extends BaseFragment {
             ImageLoadUtil.displayImage(homeClass.class_photo, imageView);
             LOGUtil.e(TAG, homeClass.class_photo);
             textView.setText(homeClass.class_name);
-            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            p.width = 1;
-//            view.setLayoutParams(p);
-            TextView t = new TextView(getActivity());
-            t.setText("---");
+            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+            p.weight= 1;
+            view.setLayoutParams(p);
             parentLayout.addView(view);
         }
     }
