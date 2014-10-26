@@ -9,8 +9,12 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.google.gson.Gson;
 import com.qh.half.HalfApplication;
+import com.qh.half.MainActivity;
 import com.qh.half.R;
 import com.qh.half.api.login.SnsLoginApi;
+import com.qh.half.greendao.DaoMaster;
+import com.qh.half.greendao.DaoSession;
+import com.qh.half.greendao.LoginUser;
 import com.qh.half.http.JsonHttpListener;
 import com.qh.half.http.ZhidianHttpClient;
 import com.qh.half.model.User;
@@ -142,7 +146,11 @@ private void snsLogin(Map<String ,Object> info){
                 JSONObject jsonObject = new JSONObject(jsonString);
                 if("1".equals(jsonObject.optString("result"))){
                     HalfApplication.loginUser =new Gson().fromJson(jsonString,User.class);
-                    Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+                    LoginUser loginUser = new LoginUser() ;
+                    loginUser.setUserid(HalfApplication.loginUser.userid);
+                    loginUser.setUserName(HalfApplication.loginUser.username);
+                    loginUser.setUserPhoto(HalfApplication.loginUser.avatar_large);
+                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     startActivity(intent);
                 }
             } catch (JSONException e) {

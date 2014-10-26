@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import butterknife.ButterKnife;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -152,6 +153,9 @@ public abstract class BaseFragment extends Fragment {
 
     }
 
+    protected  void showServerErorr(){
+        Toast.makeText(getActivity(),"服务器内部错误",Toast.LENGTH_SHORT).show() ;
+    }
     protected abstract int getViewId();
 
 }

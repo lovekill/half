@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+        <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <ImageView android:layout_width="@dimen/avatar_size" android:layout_height="@dimen/avatar_size"
+                       android:id="@+id/leftAvatar"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/leftName" android:layout_toRightOf="@id/leftAvatar"/>
+            <TextView android:layout_width="wrap_content" android:layout_below="@id/leftName"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/leftlocation" android:layout_toRightOf="@id/leftAvatar"/>
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="wrap_content" android:layout_alignParentRight="true"
+                        android:layout_height="wrap_content">
+
+            <ImageView android:layout_width="@dimen/avatar_size" android:layout_height="@dimen/avatar_size"
+                       android:id="@+id/rightAvatar"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/rightName" android:layout_toLeftOf="@id/rightAvatar"/>
+            <TextView android:layout_width="wrap_content" android:layout_below="@id/rightName"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/rightLocation" android:layout_toLeftOf="@id/rightAvatar"/>
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="200dp">
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="centerCrop" android:id="@+id/leftPhoto"
+                />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="200dp" android:weightSum="2">
+            <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
+                       android:layout_weight="1"/>
+
+            <android.support.v4.view.ViewPager
+                    android:id="@+id/rightViewpager"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView android:id="@+id/leftComment" android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/rightComment" android:layout_alignParentRight="true"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/likeCount"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:id="@+id/commentCount"/>
+    </LinearLayout>
+</LinearLayout>
