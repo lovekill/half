@@ -1,9 +1,8 @@
 package com.qh.half.adapter;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,24 +12,22 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.qh.half.R;
-import com.qh.half.model.LeftComment;
 import com.qh.half.model.LeftPhoto;
 import com.qh.half.model.RightPhoto;
-import com.qh.half.ui.BaseActivity;
-import com.qh.half.ui.fragment.BaseFragmentAdaper;
-import com.qh.half.ui.fragment.SigleImageFragment;
 import com.qh.half.util.ImageLoadUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Administrator on 2014/10/22.
  */
 public class HomeHotAdapter extends HalfBaseAdapter<LeftPhoto> {
-    private FragmentManager fm ;
-    public HomeHotAdapter(Context mContext, List<LeftPhoto> mList,FragmentManager fm) {
+    private FragmentManager fm;
+
+    public HomeHotAdapter(Context mContext, List<LeftPhoto> mList, FragmentManager fm) {
         super(mContext, mList);
-        this.fm = fm     ;
+        this.fm = fm;
     }
 
     @Override
@@ -50,32 +47,93 @@ public class HomeHotAdapter extends HalfBaseAdapter<LeftPhoto> {
         ImageLoadUtil.displayImage(leftComment.left_photo_URL, holder.mLeftPhoto);
         holder.mLikeCount.setText(mContext.getString(R.string.left_photo_notes, leftComment.left_photo_notes));
         holder.mCommentCount.setText(mContext.getString(R.string.left_photo_comments, leftComment.left_comment_count));
-        RightPhotoPageAdapter adapter = new RightPhotoPageAdapter(fm,leftComment.right_photo) ;
-        holder.mRightViewpager.setAdapter(adapter);
+        if (leftComment.right_photo.size() > 0) {
+            holder.mRightName.setText(leftComment.right_photo.get(0).right_photo_user_name);
+            holder.mRightLocation.setText(leftComment.right_photo.get(0).right_photo_user_address);
+            ImageLoadUtil.displayImage(leftComment.right_photo.get(0).right_photo_URL, holder.mRightAvatar);
+            RightPhotoPageAdapter adapter = new RightPhotoPageAdapter(leftComment.right_photo);
+            holder.mRightViewpager.setAdapter(adapter);
+            PageChangeListen pcl = new PageChangeListen(holder, leftComment.right_photo);
+            holder.mRightViewpager.setOnPageChangeListener(pcl);
+        }
+        holder.mCellVote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        holder.mCellChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         return convertView;
     }
 
- class  RightPhotoPageAdapter extends BaseFragmentAdaper {
-     private List<RightPhoto> rightPhotos  ;
-     public RightPhotoPageAdapter(FragmentManager fm,List<RightPhoto> photoList) {
-         super(fm);
-         this.rightPhotos = photoList ;
-     }
+    class RightPhotoPageAdapter extends PagerAdapter {
+        private List<ImageView> viewList = new ArrayList<ImageView>();
 
-     @Override
-     public Fragment getFragment(int i) {
-        SigleImageFragment fragment = new SigleImageFragment();
-         Bundle b = new Bundle() ;
-         b.putString(SigleImageFragment.URL,rightPhotos.get(i).right_photo_URL);
-         fragment.setArguments(b);
-         return  fragment ;
-     }
+        public RightPhotoPageAdapter(List<RightPhoto> photoList) {
+            for (RightPhoto r : photoList) {
+                ImageView imageView = new ImageView(mContext);
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                ImageLoadUtil.displayImage(r.right_photo_URL, imageView);
+                viewList.add(imageView);
+            }
+        }
 
-     @Override
-     public int getCount() {
-         return rightPhotos.size();
-     }
- }
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView(viewList.get(position));
+        }
+
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            container.addView(viewList.get(position));
+            return viewList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return viewList.size();
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object o) {
+            return view == o;
+        }
+    }
+
+    class PageChangeListen implements ViewPager.OnPageChangeListener {
+        private ViewHolder holder;
+        private List<RightPhoto> rightPhotos;
+
+        public PageChangeListen(ViewHolder h, List<RightPhoto> rlist) {
+            holder = h;
+            rightPhotos = rlist;
+        }
+
+        @Override
+        public void onPageScrolled(int i, float v, int i2) {
+
+        }
+
+        @Override
+        public void onPageSelected(int i) {
+            RightPhoto rightPhoto = rightPhotos.get(i);
+            holder.mRightName.setText(rightPhoto.right_photo_user_name);
+            holder.mRightLocation.setText(rightPhoto.right_photo_user_address);
+            ImageLoadUtil.displayImage(rightPhoto.right_photo_user_head, holder.mRightAvatar);
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int i) {
+
+        }
+    }
+
 
     /**
      * This class contains all butterknife-injected Views & Layouts from layout file 'home_hot_list_item.xml'
@@ -90,12 +148,12 @@ public class HomeHotAdapter extends HalfBaseAdapter<LeftPhoto> {
         TextView mLeftName;
         @InjectView(R.id.leftlocation)
         TextView mLeftlocation;
-        @InjectView(R.id.rightAvatar)
-        ImageView mRightAvatar;
         @InjectView(R.id.rightName)
         TextView mRightName;
         @InjectView(R.id.rightLocation)
         TextView mRightLocation;
+        @InjectView(R.id.rightAvatar)
+        ImageView mRightAvatar;
         @InjectView(R.id.leftPhoto)
         ImageView mLeftPhoto;
         @InjectView(R.id.rightViewpager)
@@ -108,6 +166,10 @@ public class HomeHotAdapter extends HalfBaseAdapter<LeftPhoto> {
         TextView mLikeCount;
         @InjectView(R.id.commentCount)
         TextView mCommentCount;
+        @InjectView(R.id.cellVote)
+        ImageView mCellVote;
+        @InjectView(R.id.cellChat)
+        ImageView mCellChat;
 
         ViewHolder(View view) {
             ButterKnife.inject(this, view);
