@@ -6,4 +6,6 @@
     <string name="hot_class">热门分类</string>
     <string name="left_photo_notes">%1$s次赞</string>
     <string name="left_photo_comments">%1$s 条评论</string>
+    <string name="squart">广场</string>
+    <string name="friend">小伙伴</string>
 </resources>

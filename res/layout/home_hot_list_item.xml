@@ -113,12 +113,14 @@
         <TextView
             android:id="@+id/likeCount"
             android:layout_width="wrap_content"
+            android:drawablePadding="5dp"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/cell_love_2x" />
 
         <TextView
             android:id="@+id/commentCount"
             android:layout_width="wrap_content"
+            android:drawablePadding="5dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:drawableLeft="@drawable/cell_chat_count_2x" />

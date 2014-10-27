@@ -52,7 +52,7 @@ public class HomeHotFragment extends BaseFragment {
                     if ("1".equals(jsonObject.optString("result"))) {
                         leftPhotoList = jsonToList(LeftPhoto.class, jsonString, "left_photo");
                         LOGUtil.e(TAG, leftPhotoList.size());
-                        HomeHotAdapter homeHotAdapter = new HomeHotAdapter(getActivity(), leftPhotoList, getChildFragmentManager());
+                        HomeHotAdapter homeHotAdapter = new HomeHotAdapter(getActivity(), leftPhotoList);
                         mListView.setAdapter(homeHotAdapter);
                     } else {
                         showServerErorr();

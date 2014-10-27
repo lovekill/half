@@ -23,11 +23,9 @@ import java.util.List;
  * Created by Administrator on 2014/10/22.
  */
 public class HomeHotAdapter extends HalfBaseAdapter<LeftPhoto> {
-    private FragmentManager fm;
 
-    public HomeHotAdapter(Context mContext, List<LeftPhoto> mList, FragmentManager fm) {
+    public HomeHotAdapter(Context mContext, List<LeftPhoto> mList) {
         super(mContext, mList);
-        this.fm = fm;
     }
 
     @Override
@@ -45,12 +43,13 @@ public class HomeHotAdapter extends HalfBaseAdapter<LeftPhoto> {
         holder.mLeftlocation.setText(leftComment.left_photo_user_address);
         ImageLoadUtil.displayImage(leftComment.left_photo_user_head, holder.mLeftAvatar);
         ImageLoadUtil.displayImage(leftComment.left_photo_URL, holder.mLeftPhoto);
-        holder.mLikeCount.setText(mContext.getString(R.string.left_photo_notes, leftComment.left_photo_notes));
+        holder.mLikeCount.setText(mContext.getString(R.string.left_photo_notes, leftComment.left_vote_cout));
+        holder.mLeftComment.setText(leftComment.left_photo_notes);
         holder.mCommentCount.setText(mContext.getString(R.string.left_photo_comments, leftComment.left_comment_count));
         if (leftComment.right_photo.size() > 0) {
             holder.mRightName.setText(leftComment.right_photo.get(0).right_photo_user_name);
             holder.mRightLocation.setText(leftComment.right_photo.get(0).right_photo_user_address);
-            ImageLoadUtil.displayImage(leftComment.right_photo.get(0).right_photo_URL, holder.mRightAvatar);
+            ImageLoadUtil.displayImage(leftComment.right_photo.get(0).right_photo_user_head, holder.mRightAvatar);
             RightPhotoPageAdapter adapter = new RightPhotoPageAdapter(leftComment.right_photo);
             holder.mRightViewpager.setAdapter(adapter);
             PageChangeListen pcl = new PageChangeListen(holder, leftComment.right_photo);

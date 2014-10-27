@@ -21,4 +21,5 @@ public class LeftPhoto {
     public String left_photo_user_name;
     public String left_photo_user_sex;
     public String left_vote_cout;
+    public String left_photo_vote_result ;//广场才有
 }
