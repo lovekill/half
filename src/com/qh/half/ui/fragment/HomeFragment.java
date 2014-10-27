@@ -29,7 +29,6 @@ public class HomeFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         mRankviewPage.setAdapter(new HomePageAdapter());
         mTitles.setViewPager(mRankviewPage);
-//        mTitles.setCurrentItem(2);
     }
 
    class  HomePageAdapter extends BaseFragmentAdaper{

@@ -1,5 +1,6 @@
 package com.qh.half.ui;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.google.gson.Gson;
+import com.qh.half.DaoManager;
 import com.qh.half.HalfApplication;
 import com.qh.half.MainActivity;
 import com.qh.half.R;
@@ -31,6 +33,7 @@ import com.umeng.socialize.sso.UMQQSsoHandler;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -62,6 +65,27 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(this, "1101736944",
                 "s7HFgqRAJ8NmDhk3");
         qqSsoHandler.addToSocialSDK();
+        if(hasLogin()){
+            showMainHome();
+        }
+    }
+
+    private boolean hasLogin(){
+        List<LoginUser> loginUsers = DaoManager.getDaoSession().getLoginUserDao().loadAll();
+        if(loginUsers.size()>0){
+            User user = new User() ;
+            HalfApplication.loginUser = user ;
+            HalfApplication.loginUser.avatar_large = loginUsers.get(0).getUserPhoto();
+            HalfApplication.loginUser.userid= loginUsers.get(0).getUserid();
+            HalfApplication.loginUser.username = loginUsers.get(0).getUserName();
+            return true;
+        }else {
+            return  false ;
+        }
+    }
+    private  void showMainHome(){
+        Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -150,8 +174,8 @@ private void snsLogin(Map<String ,Object> info){
                     loginUser.setUserid(HalfApplication.loginUser.userid);
                     loginUser.setUserName(HalfApplication.loginUser.username);
                     loginUser.setUserPhoto(HalfApplication.loginUser.avatar_large);
-                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                    startActivity(intent);
+                    DaoManager.getDaoSession().getLoginUserDao().insert(loginUser);
+                    showMainHome();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

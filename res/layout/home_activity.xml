@@ -6,17 +6,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
-    <LinearLayout
-            android:id="@+id/titleLayout"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-    </LinearLayout>
-
     <TabHost
             android:id="@+id/tabHost"
-            android:layout_below="@id/titleLayout"
             android:layout_height="match_parent"
             android:layout_width="match_parent">
 
@@ -34,12 +25,16 @@
 
 
                 <LinearLayout
+                        android:id="@+id/homeTab"
+                        android:orientation="vertical"
                         android:background="@drawable/home_home_selected"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
 
                 <LinearLayout
+                        android:id="@+id/squart"
+                        android:orientation="vertical"
                         android:layout_weight="1"
                         android:background="@drawable/home_squar_selected"
                         android:layout_width="wrap_content"
@@ -47,6 +42,8 @@
 
 
                 <LinearLayout
+                        android:id="@+id/message"
+                        android:orientation="vertical"
                         android:layout_weight="1"
                         android:background="@drawable/home_home_selected"
                         android:layout_width="wrap_content"
@@ -54,6 +51,8 @@
 
                 <LinearLayout
                         android:layout_weight="1"
+                        android:id="@+id/mine"
+                        android:orientation="vertical"
                         android:background="@drawable/home_home_selected"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -78,7 +77,7 @@
                         class="com.qh.half.ui.fragment.HomeFragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        ></fragment>
+                        tools:layout="@layout/fragment_home_layout"></fragment>
 
                 <fragment
                         android:id="@+id/squartfragment"
@@ -93,7 +92,7 @@
                         android:layout_height="match_parent"></fragment>
 
                 <fragment
-                        android:id="@+id/pCenter"
+                        android:id="@+id/mineFragment"
                         class="com.qh.half.ui.fragment.UserCenterFragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"></fragment>

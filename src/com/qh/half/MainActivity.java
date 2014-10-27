@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity{
 //                getCameraInstance().release();
 //            }
 //        });
-        addFragment(new HomeFragment());
+        addFragment(new HomeFragment(),true);
     }
 
     /**

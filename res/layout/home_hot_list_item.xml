@@ -13,7 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <com.qh.half.ui.view.RoundImageView
                 android:id="@+id/leftAvatar"
                 style="@style/avatar_style" />
 
@@ -54,7 +54,7 @@
                     android:text="location" />
             </LinearLayout>
 
-            <ImageView
+            <com.qh.half.ui.view.RoundImageView
                 android:id="@+id/rightAvatar"
                 style="@style/avatar_style"
                 android:src="@drawable/ic_launcher" />
@@ -132,14 +132,14 @@
         <ImageView
             android:id="@+id/cellVote"
             android:src="@drawable/cell_vote_2x"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="40dp"
+            android:layout_height="35dp" />
 
         <ImageView
             android:id="@+id/cellChat"
             android:src="@drawable/cell_chat_2x"
             android:layout_marginLeft="40dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="40dp"
+            android:layout_height="35dp" />
     </LinearLayout>
 </LinearLayout>

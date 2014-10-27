@@ -6,6 +6,7 @@ import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGener
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.qh.half.greendao.LoginUser;
 import com.qh.half.model.User;
 
 /**
@@ -17,6 +18,7 @@ public class HalfApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initImageLoader(this);
+        DaoManager.getInstance().init(this);
     }
 
     public void initImageLoader(Context context) {

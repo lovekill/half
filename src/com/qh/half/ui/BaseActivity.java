@@ -2,9 +2,11 @@ package com.qh.half.ui;
 
 import android.app.Activity;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.qh.half.ui.fragment.BaseFragment;
+import com.qh.half.util.LOGUtil;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,15 +19,20 @@ import java.util.Map;
 /**
  * Created by engine on 2014/10/19.
  */
-public class BaseActivity extends FragmentActivity{
+public class BaseActivity extends FragmentActivity {
     public String TAG = getClass().getSimpleName();
-    public void addFragment(BaseFragment fragment){
-        getSupportFragmentManager().beginTransaction().add(android.R.id.content, fragment).commit();
+
+    public void addFragment(BaseFragment f, boolean isAddToBackStack) {
+        if (getSupportFragmentManager().findFragmentByTag(f.toString()) == null) {
+            final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.add(android.R.id.content, f);
+            if (isAddToBackStack) {
+                ft.addToBackStack(f.toString());
+            }
+            ft.commit();
+        }
     }
-    protected <T> T jsonToBean(Class<T> clazz, String json)
-            throws JSONException {
-        return jsonToBean(clazz, json, "data");
-    }
+
 
     synchronized protected <T> List<T> jsonToList(Class<T> clazz, String json, String key)
             throws JSONException {
@@ -86,5 +93,14 @@ public class BaseActivity extends FragmentActivity{
         }
         T t = new Gson().fromJson(jsonObject.toString(), clazz);
         return t;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+            getSupportFragmentManager().popBackStack();
+        } else {
+            finish();
+        }
     }
 }
