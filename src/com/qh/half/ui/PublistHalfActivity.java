@@ -6,10 +6,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.qh.half.R;
 import com.qh.half.ui.view.CameraPreview;
+import com.qh.half.util.LOGUtil;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Created by Administrator on 2014/10/28.
@@ -27,8 +34,13 @@ public class PublistHalfActivity extends BaseActivity implements View.OnClickLis
     ImageView mTakePic;
     @InjectView(R.id.camaraPreView)
     FrameLayout mCamaraPreViewLayout;
+    @InjectView(R.id.orLayout)
+    LinearLayout mOrLayout;
+    @InjectView(R.id.veLayout)
+    LinearLayout mVeLayout;
     private CameraPreview mCamaraPreview;
     private boolean light = true;
+    private boolean showLeft = true;
     private Camera mCamera;
 
     @Override
@@ -37,8 +49,9 @@ public class PublistHalfActivity extends BaseActivity implements View.OnClickLis
         setContentView(R.layout.activity_public_half);
         ButterKnife.inject(this);
         ButterKnife.inject(this);
+        ButterKnife.inject(this);
         if (checkCameraHardware()) {
-            mCamera = getCameraInstance() ;
+            mCamera = getCameraInstance();
             mCamaraPreview = new CameraPreview(this, mCamera);
             mCamaraPreViewLayout.addView(mCamaraPreview);
         }
@@ -46,6 +59,7 @@ public class PublistHalfActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 if (mCamera != null) {
+                    mCamera.takePicture(null,null,mPictureCallback);
                     mCamera.stopPreview();
                     mCamera.release();
                 }
@@ -58,6 +72,7 @@ public class PublistHalfActivity extends BaseActivity implements View.OnClickLis
                 finish();
             }
         });
+        mCamaraLight.setOnClickListener(this);
     }
 
     /**
@@ -90,13 +105,51 @@ public class PublistHalfActivity extends BaseActivity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.camaraLight:
                 if (light) {
-                    getCameraInstance().getParameters().setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+                    mCamera.getParameters().setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
                 } else {
-                    getCameraInstance().getParameters().setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                    mCamera.getParameters().setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
                 }
                 light = !light;
-                getCameraInstance().stopPreview();
+                mCamera.startPreview();
+                break;
+            case R.id.change:
+                if (showLeft) {
+                    mOrLayout.setVisibility(View.GONE);
+                    mVeLayout.setVisibility(View.VISIBLE);
+                    showLeft=false;
+                }else {
+                    mOrLayout.setVisibility(View.VISIBLE);
+                    mVeLayout.setVisibility(View.GONE);
+                    showLeft=true;
+                }
                 break;
         }
     }
+    private Camera.PictureCallback mPictureCallback = new Camera.PictureCallback() {
+        @Override
+        public void onPictureTaken(byte[] data, Camera camera) {
+            String path = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
+            File pictureFile = new File(path+"/half.jpg") ;
+            if(pictureFile.exists()) pictureFile.delete();
+            try {
+                pictureFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (pictureFile == null){
+
+                return;
+            }
+
+            try {
+                FileOutputStream fos = new FileOutputStream(pictureFile);
+                fos.write(data);
+                fos.close();
+            } catch (FileNotFoundException e) {
+               LOGUtil.d(TAG, "File not found: " + e.getMessage());
+            } catch (IOException e) {
+                LOGUtil.d(TAG, "Error accessing file: " + e.getMessage());
+            }
+        }
+    } ;
 }

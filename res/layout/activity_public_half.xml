@@ -1,60 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-    <RelativeLayout android:layout_width="match_parent"
-                    android:background="@color/black"
-                    android:layout_height="@dimen/title_height">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@color/black">
 
-        <ImageView android:id="@+id/close"
-                   android:src="@drawable/camera_close_2x"
-                   android:layout_width="wrap_content"
-                   android:layout_alignParentRight="true"
-                   android:layout_centerVertical="true"
-                   android:layout_marginRight="20dp"
-                   android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/camera_close_2x"/>
 
     </RelativeLayout>
 
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="400dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
 
-        <FrameLayout android:id="@+id/camaraPreView"
-                                           android:layout_width="match_parent"
-                                           android:layout_height="match_parent"/>
+        <FrameLayout
+            android:id="@+id/camaraPreView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-        <LinearLayout android:weightSum="2" android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/orLayout"
+            android:layout_height="match_parent"
+            android:weightSum="2">
 
-            <TextView android:layout_weight="1"
-                      android:layout_width="match_parent"
-                      android:layout_height="match_parent"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
 
-            <ImageView android:src="@drawable/camera_half_2x"
-                       android:layout_weight="1"
-                       android:scaleType="centerCrop"
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/camera_half_2x"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/veLayout"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/camera_half_2x"/>
         </LinearLayout>
     </RelativeLayout>
 
-    <LinearLayout android:layout_width="wrap_content" android:background="@color/black" android:layout_height="50dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/black"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="3">
 
-        <ImageView android:id="@+id/camaraLight"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/camaraLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/btn_camara_flush"/>
 
-        <ImageView android:layout_width="wrap_content"
-                   android:id="@+id/forground"
-                   android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/forground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/camera_camera_2x"/>
 
-        <ImageView android:layout_width="wrap_content" android:id="@+id/change" android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/camera_lefttop_2x"/>
     </LinearLayout>
 
-    <ImageView android:id="@+id/takePic"
-               android:layout_gravity="center_horizontal"
-               android:src="@drawable/camera_shot_2x"
-               android:layout_width="80dp"
-               android:layout_height="80dp"/>
+    <ImageView
+        android:id="@+id/takePic"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/camera_shot_2x"/>
 </LinearLayout>
