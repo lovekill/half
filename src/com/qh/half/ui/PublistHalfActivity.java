@@ -27,30 +27,34 @@ public class PublistHalfActivity extends BaseActivity implements View.OnClickLis
     ImageView mTakePic;
     @InjectView(R.id.camaraPreView)
     FrameLayout mCamaraPreViewLayout;
-    private CameraPreview mCamaraPreview ;
-    private boolean light=true ;
+    private CameraPreview mCamaraPreview;
+    private boolean light = true;
+    private Camera mCamera;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_public_half);
         ButterKnife.inject(this);
         ButterKnife.inject(this);
-                if(checkCameraHardware()) {
-            mCamaraPreview = new CameraPreview(this, getCameraInstance());
+        if (checkCameraHardware()) {
+            mCamera = getCameraInstance() ;
+            mCamaraPreview = new CameraPreview(this, mCamera);
             mCamaraPreViewLayout.addView(mCamaraPreview);
         }
         mTakePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getCameraInstance().stopPreview();
-                getCameraInstance().release();
+                if (mCamera != null) {
+                    mCamera.stopPreview();
+                    mCamera.release();
+                }
             }
         });
         mClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getCameraInstance().stopPreview();
-                getCameraInstance().release();
+                mCamera.release();
                 finish();
             }
         });
@@ -83,11 +87,11 @@ public class PublistHalfActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.camaraLight:
-                if(light){
+                if (light) {
                     getCameraInstance().getParameters().setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
-                }else {
+                } else {
                     getCameraInstance().getParameters().setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
                 }
                 light = !light;
