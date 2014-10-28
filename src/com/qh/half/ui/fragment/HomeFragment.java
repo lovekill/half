@@ -12,14 +12,14 @@ import com.qh.half.R;
  * Created by Administrator on 2014/10/22.
  */
 public class HomeFragment extends BaseFragment {
-    @InjectView(R.id.rankviewPage)
-    ViewPager mRankviewPage;
     @InjectView(R.id.focus)
     TextView mFocus;
     @InjectView(R.id.hot)
     TextView mHot;
     @InjectView(R.id.classTab)
     TextView mClassTab;
+    @InjectView(R.id.homeViewPage)
+    ViewPager mHomeViewPage;
     private String[] titles = {"关注", "热门", "精选"};
 
     @Override
@@ -30,7 +30,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mRankviewPage.setAdapter(new HomePageAdapter());
+        mHomeViewPage.setAdapter(new HomePageAdapter());
     }
 
     class HomePageAdapter extends BaseFragmentAdaper {

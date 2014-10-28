@@ -1,5 +1,6 @@
 package com.qh.half.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -13,10 +14,10 @@ import com.qh.half.util.LOGUtil;
 /**
  * Created by Administrator on 2014/10/21.
  */
-public class HomeActivity extends BaseActivity  implements View.OnClickListener{
+public class HomeActivity extends BaseActivity implements View.OnClickListener {
     @InjectView(R.id.tablayout)
     LinearLayout mTablayout;
-//    @InjectView(android.R.id.tabcontent)
+    //    @InjectView(android.R.id.tabcontent)
 //    FrameLayout mTabcontent;
     @InjectView(android.R.id.tabs)
     TabWidget mTabs;
@@ -30,6 +31,8 @@ public class HomeActivity extends BaseActivity  implements View.OnClickListener{
     LinearLayout mMessage;
     @InjectView(R.id.mine)
     LinearLayout mMine;
+    @InjectView(R.id.mainCamara)
+    LinearLayout mMainCamara;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +40,9 @@ public class HomeActivity extends BaseActivity  implements View.OnClickListener{
         setContentView(R.layout.home_activity);
         ButterKnife.inject(this);
         ButterKnife.inject(this);
+        ButterKnife.inject(this);
         mTabHost.setup();
-        LOGUtil.e(TAG,R.id.homeTab);
+        LOGUtil.e(TAG, R.id.homeTab);
         mTabHost.addTab(mTabHost.newTabSpec("home").setIndicator("分类").setContent(R.id.homefragment));
         mTabHost.addTab(mTabHost.newTabSpec("feed").setIndicator("广场").setContent(R.id.squartfragment));
         mTabHost.addTab(mTabHost.newTabSpec("explore").setIndicator("消息").setContent(R.id.messagefragment));
@@ -47,12 +51,13 @@ public class HomeActivity extends BaseActivity  implements View.OnClickListener{
         mSquart.setOnClickListener(this);
         mMessage.setOnClickListener(this);
         mMine.setOnClickListener(this);
+        mMainCamara.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.homeTab:
                 mTabHost.setCurrentTab(0);
                 break;
@@ -64,6 +69,10 @@ public class HomeActivity extends BaseActivity  implements View.OnClickListener{
                 break;
             case R.id.mine:
                 mTabHost.setCurrentTab(3);
+                break;
+            case R.id.mainCamara:
+                Intent intent = new Intent(this,PublistHalfActivity.class);
+                startActivity(intent);
                 break;
         }
     }

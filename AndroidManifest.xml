@@ -18,6 +18,7 @@
                 android:name=".ui.HomeActivity"
                 android:theme="@style/ViewPageTab"
                 ></activity>
+        <activity android:name=".ui.PublistHalfActivity"></activity>
         <meta-data
                 android:name="UMENG_APPKEY" android:value="53bb556d56240bcff207ec6c"/>
 
