@@ -74,6 +74,7 @@ public class PublistHalfActivity extends BaseActivity implements View.OnClickLis
             }
         });
         mCamaraLight.setOnClickListener(this);
+        mChange.setOnClickListener(this);
     }
 
     /**
@@ -154,6 +155,7 @@ public class PublistHalfActivity extends BaseActivity implements View.OnClickLis
             }
             mCamera.stopPreview();
             mCamera.release();
+            ImageFilterActivity.startImageFilter(PublistHalfActivity.this,pictureFile.getAbsolutePath(),showLeft);
         }
     } ;
 }

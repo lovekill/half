@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0"
-          package="com.qh.half">
+<manifest
+    package="com.qh.half"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionCode="1"
+    android:versionName="1.0">
 
     <uses-sdk android:minSdkVersion="16"/>
-    <application android:name=".HalfApplication"
-            android:icon="@drawable/ic_launcher" android:label="@string/app_name"
-            android:theme="@style/ViewPageTab">
+    <application
+        android:name=".HalfApplication"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/ViewPageTab">
         <activity
-                android:label="@string/app_name" android:name=".ui.LoginActivity">
+            android:name=".ui.LoginActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -15,27 +21,38 @@
         </activity>
         <activity android:name=".MainActivity"/>
         <activity
-                android:name=".ui.HomeActivity"
-                android:theme="@style/ViewPageTab"
-                ></activity>
+            android:name=".ui.HomeActivity"
+            android:theme="@style/ViewPageTab"
+            ></activity>
         <activity android:name=".ui.PublistHalfActivity"></activity>
+        <activity android:name=".ui.ImageFilterActivity"></activity>
+
         <meta-data
-                android:name="UMENG_APPKEY" android:value="53bb556d56240bcff207ec6c"/>
+            android:name="UMENG_APPKEY"
+            android:value="53bb556d56240bcff207ec6c"/>
 
         <activity
-                android:configChanges="orientation|keyboard" android:launchMode="singleTask"
-                android:name="com.umeng.socialize.view.ShareActivity" android:noHistory="true"
-                android:theme="@style/Theme.UMDialog" android:windowSoftInputMode="stateVisible|adjustResize"/>
+            android:name="com.umeng.socialize.view.ShareActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:theme="@style/Theme.UMDialog"
+            android:windowSoftInputMode="stateVisible|adjustResize"/>
         <activity
-                android:label="@string/app_name" android:name="com.facebook.LoginActivity"
-                android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:name="com.facebook.LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <activity
-                android:configChanges="keyboardHidden|orientation|screenSize" android:exported="true"
-                android:name=".wxapi.WXEntryActivity" android:screenOrientation="portrait"
-                android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <activity
-                android:configChanges="orientation|keyboard" android:launchMode="singleTask"
-                android:name="com.tencent.tauth.AuthActivity" android:noHistory="true">
+            android:name="com.tencent.tauth.AuthActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
 
@@ -46,11 +63,12 @@
             </intent-filter>
         </activity>
         <activity
-                android:name="com.tencent.connect.common.AssistActivity" android:screenOrientation="portrait"
-                android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <activity
-                android:configChanges="orientation|navigation|keyboardHidden"
-                android:name="com.renn.rennsdk.oauth.OAuthActivity"/>
+            android:name="com.renn.rennsdk.oauth.OAuthActivity"
+            android:configChanges="orientation|navigation|keyboardHidden"/>
     </application>
 
     <uses-permission android:name="android.permission.CAMERA"/>
