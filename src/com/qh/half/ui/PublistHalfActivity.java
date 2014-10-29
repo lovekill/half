@@ -1,6 +1,9 @@
 package com.qh.half.ui;
 
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.view.View;
@@ -59,9 +62,7 @@ public class PublistHalfActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 if (mCamera != null) {
-                    mCamera.takePicture(null,null,mPictureCallback);
-                    mCamera.stopPreview();
-                    mCamera.release();
+                    mCamera.takePicture(null, null, null, mPictureCallback);
                 }
             }
         });
@@ -93,6 +94,7 @@ public class PublistHalfActivity extends BaseActivity implements View.OnClickLis
         try {
             c = Camera.open(); // attempt to get a Camera instance
             c.setDisplayOrientation(90);
+            c.getParameters().setRotation(90);
             c.getParameters().setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
         } catch (Exception e) {
             // Camera is not available (in use or does not exist)
@@ -150,6 +152,8 @@ public class PublistHalfActivity extends BaseActivity implements View.OnClickLis
             } catch (IOException e) {
                 LOGUtil.d(TAG, "Error accessing file: " + e.getMessage());
             }
+            mCamera.stopPreview();
+            mCamera.release();
         }
     } ;
 }
