@@ -81,7 +81,7 @@ public class ImageUtil {
                 file.createNewFile();
                 FileOutputStream fOut = null;
                 fOut = new FileOutputStream(file);
-                mBitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+                mBitmap.compress(Bitmap.CompressFormat.PNG,10, fOut);
                 fOut.flush();
                 fOut.close();
                 if (DEBUG)

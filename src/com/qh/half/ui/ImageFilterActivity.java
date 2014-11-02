@@ -3,19 +3,21 @@ package com.qh.half.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.ExifInterface;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import cn.Ragnarok.BitmapFilter;
 import com.qh.half.R;
-import com.qh.half.util.ImageUtil;
+import com.qh.half.util.LOGUtil;
 
 import java.io.IOException;
 
@@ -33,6 +35,8 @@ public class ImageFilterActivity extends BaseActivity implements View.OnClickLis
     LinearLayout mVeLayout;
     @InjectView(R.id.he0)
     ImageView mHe0;
+    @InjectView(R.id.imagelayout)
+    RelativeLayout mImagelayout;
     private boolean isLeft = true;
     private static String PATH = "imagePath";
     private static String ISLEFT = "isleft";
@@ -46,6 +50,10 @@ public class ImageFilterActivity extends BaseActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_half);
         ButterKnife.inject(this);
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, dm.widthPixels);
+        mImagelayout.setLayoutParams(params);
         path = getIntent().getStringExtra(PATH);
         try {
             ExifInterface exifInterface = new ExifInterface(path);
@@ -67,7 +75,10 @@ public class ImageFilterActivity extends BaseActivity implements View.OnClickLis
 
         int size = getResources().getDimensionPixelSize(R.dimen.image_decode);
 //        mCamaraPreView.setImageBitmap(ImageUtil.decodeSampledBitmapFromFile(path,size,size));
-        Bitmap bitmap = ImageUtil.decodeSampledBitmapFromFile(path, size, size);
+//        Bitmap bitmap = ImageUtil.decodeSampledBitmapFromFile(path, size, size);
+        Bitmap bitmap = BitmapFactory.decodeFile(path);
+        LOGUtil.e(TAG, "w=" + bitmap.getWidth() + ",h=" + bitmap.getHeight());
+        degree = 0;
         if (degree > 0) {
             Matrix m = new Matrix();
             int width = bitmap.getWidth();
