@@ -160,12 +160,14 @@ public class PublistHalfActivity extends BaseActivity implements View.OnClickLis
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
             String path = Environment.getExternalStorageDirectory().getAbsolutePath()+"/half.jpg";
+            LOGUtil.e(TAG,"data length="+data.length);
             Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
             Matrix m = new Matrix();
             m.setRotate(90, (float) bitmap.getWidth() / 2, (float) bitmap.getHeight() / 2);
             LOGUtil.e(TAG,mTitleLayout.getMeasuredHeight());
             final Bitmap bm = Bitmap.createBitmap(bitmap, mTitleLayout.getMeasuredHeight(), 0, bitmap.getHeight(), bitmap.getHeight(), m, true);
             ImageUtil.savePic(path, bm);
+            mCamera.stopPreview();
             ImageFilterActivity.startImageFilter(PublistHalfActivity.this,path, showLeft);
         }
     };
